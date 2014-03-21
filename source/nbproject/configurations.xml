@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="90">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="f10" displayName="Browse" projectFiles="true">
+        <logicalFolder name="f11" displayName="Support" projectFiles="true">
+          <itemPath>support.cpp</itemPath>
+          <itemPath>support.h</itemPath>
+        </logicalFolder>
+        <itemPath>browse.cpp</itemPath>
+        <itemPath>browse.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f1" displayName="Common" projectFiles="true">
+        <itemPath>common.cpp</itemPath>
+        <itemPath>common.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f7" displayName="FileHandler" projectFiles="true">
+        <itemPath>filehandler.cpp</itemPath>
+        <itemPath>filehandler.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f8" displayName="Image" projectFiles="true">
+        <itemPath>image.cpp</itemPath>
+        <itemPath>image.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f4" displayName="Main" projectFiles="true">
+        <itemPath>main.cpp</itemPath>
+        <itemPath>main.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f3" displayName="MainWindow" projectFiles="true">
+        <logicalFolder name="f2" displayName="DropTarget" projectFiles="true">
+          <itemPath>droptarget.cpp</itemPath>
+          <itemPath>droptarget.h</itemPath>
+        </logicalFolder>
+        <logicalFolder name="f1" displayName="Icon" projectFiles="true">
+          <itemPath>icon.cpp</itemPath>
+          <itemPath>icon.h</itemPath>
+        </logicalFolder>
+        <itemPath>mainwindow.cpp</itemPath>
+        <itemPath>mainwindow.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f5" displayName="Misc" projectFiles="true">
+        <itemPath>math.h</itemPath>
+        <itemPath>opengl.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f6" displayName="Scene" projectFiles="true">
+        <itemPath>scene.cpp</itemPath>
+        <itemPath>scene.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f9" displayName="Shader" projectFiles="true">
+        <itemPath>shader.cpp</itemPath>
+        <itemPath>shader.h</itemPath>
+      </logicalFolder>
+      <logicalFolder name="f2" displayName="Viewport" projectFiles="true">
+        <itemPath>viewport.cpp</itemPath>
+        <itemPath>viewport.h</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>Makefile</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <commandLine>-I/usr/local/lib/wx/include/gtk2-unicode-2.9 -I/usr/local/include/wx-2.9 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread -L/usr/local/lib -pthread -lwx_gtk2u_gl-2.9 -lwx_baseu-2.9</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>../texview</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lIL</linkerOptionItem>
+            <linkerOptionItem>-lGL</linkerOptionItem>
+            <linkerOptionItem>-lGLEW</linkerOptionItem>
+            <linkerOptionItem>-I/usr/local/lib/wx/include/gtk2-unicode-2.9 -I/usr/local/include/wx-2.9 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread -L/usr/local/lib -pthread -lwx_gtk2u_gl-2.9 -lwx_baseu-2.9</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </compileType>
+      <item path="browse.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="browse.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="droptarget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="droptarget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="filehandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="filehandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="icon.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="icon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="image.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="image.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="main.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="mainwindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="mainwindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="math.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="opengl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="shader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="shader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="support.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="support.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="viewport.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="viewport.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="browse.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="browse.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="common.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="common.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="droptarget.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="droptarget.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="filehandler.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="filehandler.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="icon.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="icon.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="image.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="image.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="main.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="mainwindow.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="mainwindow.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="math.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="opengl.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="scene.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="scene.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="shader.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="shader.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="support.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="support.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="viewport.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="viewport.h" ex="false" tool="3" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>
