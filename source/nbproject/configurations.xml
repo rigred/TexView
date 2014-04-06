@@ -79,7 +79,7 @@
       </toolsSet>
       <compileType>
         <ccTool>
-          <commandLine>-I/usr/local/lib/wx/include/gtk2-unicode-2.9 -I/usr/local/include/wx-2.9 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread -L/usr/local/lib -pthread -lwx_gtk2u_gl-2.9 -lwx_baseu-2.9</commandLine>
+          <commandLine>`wx-config --cxxflags`</commandLine>
         </ccTool>
         <linkerTool>
           <output>../texview</output>
@@ -87,7 +87,7 @@
             <linkerOptionItem>-lIL</linkerOptionItem>
             <linkerOptionItem>-lGL</linkerOptionItem>
             <linkerOptionItem>-lGLEW</linkerOptionItem>
-            <linkerOptionItem>-I/usr/local/lib/wx/include/gtk2-unicode-2.9 -I/usr/local/include/wx-2.9 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread -L/usr/local/lib -pthread -lwx_gtk2u_gl-2.9 -lwx_baseu-2.9</linkerOptionItem>
+            <linkerOptionItem>`wx-config --libs std,gl`</linkerOptionItem>
           </linkerLibItems>
         </linkerTool>
       </compileType>

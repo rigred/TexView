@@ -53,8 +53,8 @@ OBJECTFILES= \
 CFLAGS=
 
 # CC Compiler Flags
-CCFLAGS=-I/usr/local/lib/wx/include/gtk2-unicode-2.9 -I/usr/local/include/wx-2.9 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread -L/usr/local/lib -pthread -lwx_gtk2u_gl-2.9 -lwx_baseu-2.9
-CXXFLAGS=-I/usr/local/lib/wx/include/gtk2-unicode-2.9 -I/usr/local/include/wx-2.9 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread -L/usr/local/lib -pthread -lwx_gtk2u_gl-2.9 -lwx_baseu-2.9
+CCFLAGS=`wx-config --cxxflags` 
+CXXFLAGS=`wx-config --cxxflags` 
 
 # Fortran Compiler Flags
 FFLAGS=
@@ -63,7 +63,7 @@ FFLAGS=
 ASFLAGS=
 
 # Link Libraries and Options
-LDLIBSOPTIONS=-lIL -lGL -lGLEW -I/usr/local/lib/wx/include/gtk2-unicode-2.9 -I/usr/local/include/wx-2.9 -D_FILE_OFFSET_BITS=64 -DWXUSINGDLL -D__WXGTK__ -pthread -L/usr/local/lib -pthread -lwx_gtk2u_gl-2.9 -lwx_baseu-2.9
+LDLIBSOPTIONS=-lIL -lGL -lGLEW `wx-config --libs std,gl`  
 
 # Build Targets
 .build-conf: ${BUILD_SUBPROJECTS}
@@ -76,62 +76,62 @@ LDLIBSOPTIONS=-lIL -lGL -lGLEW -I/usr/local/lib/wx/include/gtk2-unicode-2.9 -I/u
 ${OBJECTDIR}/browse.o: browse.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/browse.o browse.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/browse.o browse.cpp
 
 ${OBJECTDIR}/common.o: common.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/common.o common.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/common.o common.cpp
 
 ${OBJECTDIR}/droptarget.o: droptarget.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/droptarget.o droptarget.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/droptarget.o droptarget.cpp
 
 ${OBJECTDIR}/filehandler.o: filehandler.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/filehandler.o filehandler.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/filehandler.o filehandler.cpp
 
 ${OBJECTDIR}/icon.o: icon.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/icon.o icon.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/icon.o icon.cpp
 
 ${OBJECTDIR}/image.o: image.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/image.o image.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/image.o image.cpp
 
 ${OBJECTDIR}/main.o: main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.cpp
 
 ${OBJECTDIR}/mainwindow.o: mainwindow.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mainwindow.o mainwindow.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/mainwindow.o mainwindow.cpp
 
 ${OBJECTDIR}/scene.o: scene.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scene.o scene.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/scene.o scene.cpp
 
 ${OBJECTDIR}/shader.o: shader.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/shader.o shader.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/shader.o shader.cpp
 
 ${OBJECTDIR}/support.o: support.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/support.o support.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/support.o support.cpp
 
 ${OBJECTDIR}/viewport.o: viewport.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.cc) -g -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/viewport.o viewport.cpp
+	$(COMPILE.cc) -g `wx-config --cflags std,gl`   -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/viewport.o viewport.cpp
 
 # Subprojects
 .build-subprojects:
