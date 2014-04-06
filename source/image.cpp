@@ -235,10 +235,11 @@ void CImage::Refresh()
  glTexParameteri(target, GL_TEXTURE_MAG_FILTER, mag);
 
  // anisotropic filtering
- if (g_maxaniso > 1) {
+ if (g_filter && g_maxaniso > 1) {
   glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, g_maxaniso);
+ } else {
+  glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, 1);
  }
- 
 }
 
 
