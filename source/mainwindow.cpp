@@ -219,9 +219,9 @@ CMainWindow::CMainWindow() : wxFrame(NULL, wxID_ANY, g_appname, wxDefaultPositio
  int w[10] = { 200, // 0  status
                100, // 1  image dimensions
                100, // 2  format
-                50, // 3  zoom
-               100, // 4  cursor X,Y
-               100, // 5  cursor U,V
+                80, // 3  zoom
+               120, // 4  cursor X,Y
+               120, // 5  cursor U,V
                 50, // 6  RGBA (byte range)
                 50, // 7  RGBA (float range)
                 50, // 8  color HEX
