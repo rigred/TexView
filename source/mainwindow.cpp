@@ -655,6 +655,12 @@ void CMainWindow::UpdateUI()
    // convert to UV space
    const float2 uv = float2( pc.x/(float)Image.width, pc.y/(float)Image.height );
    
+   //// temp: move to proper place
+   // remember coordinates
+   g_cursorx = uv.x; 
+   g_cursory = 1.0 - uv.y;
+   //// temp
+   
    // mouse coords
    sprintf(str,"XY %i,%i", (int)pc.x, (int)pc.y );
    stsStatus->SetStatusText(str, 4 );
