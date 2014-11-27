@@ -92,6 +92,9 @@ bool IsSupportedFile(const char *fname)
 {
  if (!fname) return false;
  
+ // ignore Apple/OSX metadata files
+ if (strncmp(fname,"._",2) == 0) return false;
+ 
  // get file extension
  const char *ext = strrchr(fname,'.');
  if (!ext) return NULL;
