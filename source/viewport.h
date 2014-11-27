@@ -28,11 +28,11 @@ private:
  void Redraw();
  
  // events
- void Paint(wxPaintEvent &evt);
+ void OnPaint(wxPaintEvent &evt);
  void OnResize(wxSizeEvent &evt);
  void OnKeyDown(wxKeyEvent &evt);
  void OnKeyUp(wxKeyEvent &evt);
- void Mouse(wxMouseEvent &evt);
+ void OnMouse(wxMouseEvent &evt);
  
 public:
  
