@@ -11,9 +11,9 @@
 
 
 BEGIN_EVENT_TABLE(CViewport, wxGLCanvas)
- EVT_PAINT(CViewport::Paint)
+ EVT_PAINT(CViewport::OnPaint)
  EVT_SIZE(CViewport::OnResize)
- EVT_MOUSE_EVENTS(CViewport::Mouse)
+ EVT_MOUSE_EVENTS(CViewport::OnMouse)
  EVT_KEY_DOWN(CViewport::OnKeyDown)
  EVT_KEY_UP(CViewport::OnKeyUp)
 END_EVENT_TABLE()
@@ -187,7 +187,7 @@ void CViewport::AutoZoom(bool zoomin)
 
 
 // paint event
-void CViewport::Paint(wxPaintEvent &evt)
+void CViewport::OnPaint(wxPaintEvent &evt)
 {
  //Init();
  if (!glcontext) return;
@@ -243,7 +243,7 @@ void CViewport::Redraw()
 
 
 // mouse movement event
-void CViewport::Mouse(wxMouseEvent &evt)
+void CViewport::OnMouse(wxMouseEvent &evt)
 {
  // update button states
  const bool mb_left = evt.LeftIsDown();
