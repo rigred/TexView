@@ -97,6 +97,7 @@ void CViewport::UpdateShaderUniforms()
  shader->SetUniform1f("checkSize", (1.0 / (float)g_checkSize) );
  shader->SetUniform1i("showGrid", g_grid );
  shader->SetUniform1i("showRamp", g_ramp );
+ shader->SetUniform2f("cursorPos", g_cursorx, g_cursory );
 }
 
 
@@ -326,6 +327,11 @@ void CViewport::OnMouse(wxMouseEvent &evt)
    if (mousewheel > 0) Zoom(2.0, false );
    if (mousewheel < 0) Zoom(0.5, false );
   }
+  Redraw();
+ }
+ 
+ // redraw for pixel hightlight
+ if (g_grid) {
   Redraw();
  }
  
