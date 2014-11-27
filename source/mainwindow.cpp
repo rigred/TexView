@@ -656,11 +656,11 @@ void CMainWindow::UpdateUI()
    const float2 uv = float2( pc.x/(float)Image.width, pc.y/(float)Image.height );
    
    // mouse coords
-   sprintf(str,"XY %i/%i", (int)pc.x, (int)pc.y );
+   sprintf(str,"XY %i,%i", (int)pc.x, (int)pc.y );
    stsStatus->SetStatusText(str, 4 );
    
    // UV coords
-   sprintf(str,"UV %.3f/%.3f", uv.x, 1.0-uv.y );
+   sprintf(str,"UV %.3f,%.3f", uv.x, 1.0-uv.y );
    stsStatus->SetStatusText(str, 5 );
    
   } else {
