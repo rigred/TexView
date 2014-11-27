@@ -37,6 +37,6 @@ std::string g_errmsg;
 
 
 float g_gridColor[3] = { 0,0,0 };
-float g_checkColor1[3] = { 0.25, 0.25, 0.25 };
-float g_checkColor2[3] = { 0.30, 0.30, 0.30 };
+float g_checkColor1[3] = { 0.45, 0.45, 0.45 };
+float g_checkColor2[3] = { 0.55, 0.55, 0.55 };
 int g_checkSize = 16;
