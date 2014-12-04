@@ -291,6 +291,35 @@ void Toggle(bool &v)
 }
 
 
+// cleans up filename (strips Samba share crap on Linux)
+const char *CleanFilePath(const char *filename)
+{
+ // clean up file path of Samba drive shares
+ const char *smb = strstr(filename, "smb-share:");
+ if (!smb) return filename;
+ 
+ // copy string
+ char tmp[256];
+ strcpy(tmp, filename);
+ 
+ // find tokens
+ char *server = strstr(tmp, "server=") + strlen("server=");
+ char *share = strstr(tmp, "share=") + strlen("share=");
+ if (!server) return filename;
+ if (!share) return filename;
+ 
+ // terminate server name string
+ char *comma = strchr(server,',');
+ if (!comma) return filename;
+ *comma = '\0';
+ 
+ // return clean filename
+ static char buffer[256];
+ sprintf(buffer, "//%s/%s", server, share);
+ return buffer;
+}
+
+
 // opens file
 bool CMainWindow::OpenFile(const char *filename)
 {
@@ -311,8 +340,10 @@ bool CMainWindow::OpenFile(const char *filename)
  //printf(">>> curpath: %s\n", (const char*)curpath.mb_str() );
  //printf(">>> curfile: %s\n", (const char*)curfile.mb_str() );
  
+ 
+ 
  // set title
- SetTitle(g_appname + " - [" + curfilepath + "]");
+ SetTitle(g_appname + " - [" + CleanFilePath(curfilepath) + "]");
  
  // load file
  SetStatusText("Loading file...", 0);
