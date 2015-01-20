@@ -1,6 +1,7 @@
 
 uniform sampler2D tex;
 uniform vec2 imageSize;
+uniform vec2 gridSize;
 uniform int colorMode;
 uniform int alphaMode;
 uniform int invertMode;
@@ -106,13 +107,13 @@ void main()
   
   // pixel highlight
   float hilite = 0.0;
-  vec2 loc = uv * imageSize;
-  vec2 cur = floor(cursorPos * imageSize);
+  vec2 loc = uv * gridSize;
+  vec2 cur = floor(cursorPos * gridSize);
   if ( (loc.x>cur.x) && (loc.y>cur.y) && (loc.x<cur.x+1.0) && (loc.y<cur.y+1.0) ) hilite = 0.25;
   frag.rgb = mix(frag.rgb, vec3(3.0, 0.0, 0.0), hilite * fade);
   
   // grid
-  vec2 p = uv * imageSize + vec2(0.5);
+  vec2 p = uv * gridSize + vec2(0.5);
   vec2 f = abs( fract(p) - 0.5);
   vec2	fdx = abs( dFdx(p) );
   vec2	fdy = abs( dFdy(p) );

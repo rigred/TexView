@@ -19,6 +19,7 @@ float g_pany = 0.0;
 float g_rot = 0.0;
 float g_cursorx = 0.0;
 float g_cursory = 0.0;
+int g_mipmaplevel = 0;
 bool g_tilex = false;
 bool g_tiley = false;
 bool g_mirrorx = false;

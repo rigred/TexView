@@ -16,6 +16,8 @@ BEGIN_EVENT_TABLE(CViewport, wxGLCanvas)
  EVT_MOUSE_EVENTS(CViewport::OnMouse)
  EVT_KEY_DOWN(CViewport::OnKeyDown)
  EVT_KEY_UP(CViewport::OnKeyUp)
+ EVT_SHOW(CViewport::OnShow)
+ EVT_MAXIMIZE(CViewport::OnMaximize)
 END_EVENT_TABLE()
 
 
@@ -87,10 +89,14 @@ void CViewport::Init()
 void CViewport::UpdateShaderUniforms()
 {
  if (!shader) return;
+ int gw = Image.width; // log();
+ int gh = Image.height; // log(); // TODO!!!!!
+ 
  shader->SetUniform1i("colorMode", g_colormode );
  shader->SetUniform1i("alphaMode", g_alphamode );
  shader->SetUniform1i("invertMode", g_invert );
  shader->SetUniform2f("imageSize", Image.width, Image.height );
+ shader->SetUniform2f("gridSize", gw, gh );
  shader->SetUniform3fv("gridColor", g_gridColor );
  shader->SetUniform3fv("checkColor1", g_checkColor1 );
  shader->SetUniform3fv("checkColor2", g_checkColor2 );
@@ -98,6 +104,52 @@ void CViewport::UpdateShaderUniforms()
  shader->SetUniform1i("showGrid", g_grid );
  shader->SetUniform1i("showRamp", g_ramp );
  shader->SetUniform2f("cursorPos", g_cursorx, g_cursory );
+ shader->SetUniform1f("mipmapLevel", g_mipmaplevel );
+}
+
+
+// window show event
+void CViewport::OnShow(wxShowEvent &evt)
+{
+ printf(">>> OnShow %ix%i\n", g_width, g_height);
+ 
+ // wxBug: triggered multiple times on GTK/X11/Linux
+}
+
+// window maximize event
+void CViewport::OnMaximize(wxMaximizeEvent &evt)
+{
+ printf(">>> OnMaximize %ix%i\n", g_width, g_height);
+ // wxBug: never triggered on GTK/X11/Linux
+ 
+ 
+ // workaround for all kinds of wxShit
+ //if (autoZoomOnFirstRedraw) {
+  
+  // workaround for workaround
+  // It appears we are resizing an absurd number of times at startup, and thus
+  // our workaround won't actually work. So we add some hueristics to try and
+  // figure out if the window is visible and we've resized to a more or less
+  // final window size yet. No doubt unreliable and probably breaks other shit.
+  // But that's life in wxLand.
+  //if (g_width > 200 && g_height > 200) {
+   
+   // workaround for workaround for workaround
+   // Ok, turns out that doesn't work well enough. wxWidgets makes windows show first,
+   // then later, if the window system is actually paying attention, maximizes it.
+   // Sort of. Maybe. So we'll need some more heuristics to detect what state this
+   // elusive invisible window is in. Let's pretend wxWidgets knows what it is doing.
+   
+   // Jesus step aside! Here's a real miracle. This code actually works!
+   //if (( (wxTopLevelWindow*)GetParent() )->IsMaximized()) {
+    autoZoomOnFirstRedraw = false;
+    AutoZoom( false );
+    
+    
+   //}
+   
+  //}
+ //}
 }
 
 
@@ -117,33 +169,19 @@ void CViewport::OnResize(wxSizeEvent &evt)
  g_width = w;
  g_height = h;
  
- //printf(">>> resize %i,%i\n", g_width, g_height);
+ printf(">>> resize %i,%i\n", g_width, g_height);
  
- // workaround for all kinds of wxShit
+ // detect whether window has been maximized
+ // this is a workaround for a handfull of bugs; the wx events are useless in determining whether this window is maximized or not
+ /*
+ printf(">>> desktop size: %ix%i\n", wxSystemSettings::GetMetric(wxSYS_SCREEN_X), wxSystemSettings::GetMetric(wxSYS_SCREEN_Y) );
+ 
+ // zoom to fit
  if (autoZoomOnFirstRedraw) {
-  
-  // workaround for workaround
-  // It appears we are resizing an absurd number of times at startup, and thus
-  // our workaround won't actually work. So we add some hueristics to try and
-  // figure out if the window is visible and we've resized to a more or less
-  // final window size yet. No doubt unreliable and probably breaks other shit.
-  // But that's life in wxLand.
-  if (g_width > 200 && g_height > 200) {
-   
-   // workaround for workaround for workaround
-   // Ok, turns out that doesn't work well enough. wxWidgets makes windows show first,
-   // then later, if the window system is actually paying attention, maximizes it.
-   // Sort of. Maybe. So we'll need some more heuristics to detect what state this
-   // elusive invisible window is in. Let's pretend wxWidgets knows what it is doing.
-   
-   // Jesus step aside! Here's a real miracle. This code actually works!
-   if (( (wxTopLevelWindow*)GetParent() )->IsMaximized()) {
-    autoZoomOnFirstRedraw = false;
-    AutoZoom( false );
-   }
-   
-  }
+  autoZoomOnFirstRedraw = false;
+  AutoZoom( false );
  }
+ */
  
  // trigger redraw
  Redraw();

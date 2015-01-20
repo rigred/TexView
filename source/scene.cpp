@@ -297,6 +297,7 @@ void ResetZoom()
  g_rot = 0;
  g_mirrorx = false;
  g_mirrory = false;
+ g_mipmaplevel = 0;
 }
 
 

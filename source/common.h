@@ -49,6 +49,7 @@ extern float g_pany;                // pan y offset
 extern float g_rot;                 // rotation
 extern float g_cursorx;             // cursor position in image space
 extern float g_cursory;             // cursor position in image space
+extern int g_mipmaplevel;           // mipmap level to display
 extern bool g_mirrorx;              // mirror horizontally
 extern bool g_mirrory;              // mirror vertically
 extern bool g_tilex;                // tile texture

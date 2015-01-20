@@ -1,4 +1,5 @@
 
+#include <math.h>
 #include <IL/il.h>
 #include <assert.h>
 #include "common.h"
@@ -15,13 +16,32 @@ CImage::CImage()
  height = 0;
  frags = 0;
  loaded = false;
- mipmaps = false;
+ mipmaps = 0;
  
  texname = 0;
  target = 0;
  intformat = 0;
  format = 0;
  type = 0;
+}
+
+
+// computes number of mipmaps
+int CountMipmaps(int w, int h)
+{
+ /*
+ int n = 0;
+ while (w > 1 && h > 1)
+ {
+  if (w > 1) w = w / 2;
+  if (h > 1) h = h / 2;
+ }
+ return n;
+ */
+ int maxdim = w;
+ if (h > maxdim) maxdim = h;
+ 
+ return 1 + floor(log2(maxdim)); // todo: NPOT?
 }
 
 
@@ -112,7 +132,9 @@ bool CImage::Load(const char *fname)
  // generate mipmaps
  if (g_genmipmaps) {
   glGenerateMipmap(GL_TEXTURE_2D);
-  mipmaps = true;
+  mipmaps = CountMipmaps( width, height );
+ } else {
+  mipmaps = 1;
  }
  
  // set texture params
@@ -210,13 +232,13 @@ void CImage::Refresh()
  // minification filter
  GLint min;
  if (g_filter) {
-  if (mipmaps) {
+  if (mipmaps > 1) {
    min = GL_LINEAR_MIPMAP_LINEAR;
   } else {
    min = GL_LINEAR;
   }
  } else {
-  if (mipmaps) {
+  if (mipmaps > 1) {
    min = GL_LINEAR_MIPMAP_LINEAR;
   } else {
    min = GL_NEAREST;
@@ -231,9 +253,13 @@ void CImage::Refresh()
   mag = GL_NEAREST;
  }
  
+ // apply filtering
  glTexParameteri(target, GL_TEXTURE_MIN_FILTER, min);
  glTexParameteri(target, GL_TEXTURE_MAG_FILTER, mag);
-
+ 
+ // mipmap level
+ glTexParameteri(target, GL_TEXTURE_BASE_LEVEL, g_mipmaplevel );
+ 
  // anisotropic filtering
  if (g_filter && g_maxaniso > 1) {
   glTexParameterf(target, GL_TEXTURE_MAX_ANISOTROPY_EXT, g_maxaniso);

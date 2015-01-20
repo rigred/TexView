@@ -20,11 +20,11 @@ private:
 public:
  
  std::string filename;                      // file name
+ bool loaded;                               // whether image is loaded
  int width;                                 // length of pixel row
  int height;                                // number of pixel rows
- int frags;                                 // number of color channels 
- bool loaded;                               // whether image is loaded
- bool mipmaps;                              // whether image has mipmaps
+ int frags;                                 // number of color channels
+ int mipmaps;                               // number of mipmaps
  
  // constructor/destructor
  CImage();

@@ -48,6 +48,9 @@ enum {
  mnuViewMirrorX,
  mnuViewMirrorY,
  
+ mnuViewMipmapUp,
+ mnuViewMipmapDn,
+ 
  mnuViewPrev,
  mnuViewNext,
  
@@ -179,6 +182,9 @@ CMainWindow::CMainWindow() : wxFrame(NULL, wxID_ANY, g_appname, wxDefaultPositio
   toolbar->AddTool(mnuViewMirrorX, "Mirror Horizontally", Icon("mirrorx"), wxNullBitmap, wxITEM_CHECK, "Mirror Horizontally");
   toolbar->AddTool(mnuViewMirrorY, "Mirror Vertically", Icon("mirrory"), wxNullBitmap, wxITEM_CHECK, "Mirror Vertically");
   toolbar->AddSeparator();
+  toolbar->AddTool(mnuViewMipmapUp, "Mipmap -1", Icon("mipmapup"), wxNullBitmap, wxITEM_NORMAL, "Mipmap Up");
+  toolbar->AddTool(mnuViewMipmapDn, "Mirror +1", Icon("mipmapdn"), wxNullBitmap, wxITEM_NORMAL, "Mipmap Down");
+  toolbar->AddSeparator();
   toolbar->AddTool(mnuViewZoomReset, "Reset Zoom", Icon("zoomreset"), wxNullBitmap, wxITEM_NORMAL, "Reset zoom");
   toolbar->AddTool(mnuViewZoomAuto, "Zoom to fit", Icon("zoomfit"), wxNullBitmap, wxITEM_NORMAL, "Zoom to fit");
   
@@ -216,21 +222,22 @@ CMainWindow::CMainWindow() : wxFrame(NULL, wxID_ANY, g_appname, wxDefaultPositio
  
  // --- status bar -------------------------------------------------------------
  
- int w[10] = { 200, // 0  status
+ int w[11] = { 200, // 0  status
                100, // 1  image dimensions
                100, // 2  format
                 80, // 3  zoom
-               120, // 4  cursor X,Y
-               120, // 5  cursor U,V
-                50, // 6  RGBA (byte range)
-                50, // 7  RGBA (float range)
-                50, // 8  color HEX
+               140, // 4  mipmap level
+               120, // 5  cursor X,Y
+               120, // 6  cursor U,V
+                50, // 7  RGBA (byte range)
+                50, // 8  RGBA (float range)
+                50, // 9  color HEX
                 -1
               };
  
  CreateStatusBar(1);
  stsStatus = GetStatusBar();
- stsStatus->SetFieldsCount(10, w);
+ stsStatus->SetFieldsCount(11, w);
  
  // --- misc -------------------------------------------------------------------
  
@@ -486,6 +493,14 @@ void SelChan(int n)
 }
 
 
+void UpdateImageParams()
+{
+ Image.Bind();
+ Image.Refresh();
+ Image.Unbind();
+}
+
+
 // when menu item is clicked
 void CMainWindow::OnMenuClick(wxCommandEvent &evt)
 {
@@ -537,9 +552,7 @@ void CMainWindow::OnMenuClick(wxCommandEvent &evt)
    break;
   case mnuViewFilter:
    Toggle( g_filter );
-   Image.Bind();
-   Image.Refresh();
-   Image.Unbind();
+   UpdateImageParams();
    break;
   case mnuViewGrid:
    Toggle( g_grid );
@@ -576,6 +589,17 @@ void CMainWindow::OnMenuClick(wxCommandEvent &evt)
   
   case mnuViewMirrorX: g_mirrorx = !g_mirrorx; break;
   case mnuViewMirrorY: g_mirrory = !g_mirrory; break;
+  
+  case mnuViewMipmapUp:
+   g_mipmaplevel -= 1;
+   if (g_mipmaplevel < 0) g_mipmaplevel = 0;
+   UpdateImageParams();
+   break;
+  case mnuViewMipmapDn:
+   g_mipmaplevel += 1;
+   if (g_mipmaplevel > Image.mipmaps-1) g_mipmaplevel = Image.mipmaps-1;
+   UpdateImageParams();
+   break;
   
   // help
   case mnuHelpAbout:
@@ -692,13 +716,17 @@ void CMainWindow::UpdateUI()
    g_cursory = 1.0 - uv.y;
    //// temp
    
+   // mipmap level
+   sprintf(str,"Mipmap %i (%i/%i)", g_mipmaplevel, g_mipmaplevel+1, Image.mipmaps );
+   stsStatus->SetStatusText(str, 4);
+   
    // mouse coords
    sprintf(str,"XY %i,%i", (int)pc.x, (int)pc.y );
-   stsStatus->SetStatusText(str, 4 );
+   stsStatus->SetStatusText(str, 5 );
    
    // UV coords
    sprintf(str,"UV %.3f,%.3f", uv.x, 1.0-uv.y );
-   stsStatus->SetStatusText(str, 5 );
+   stsStatus->SetStatusText(str, 6 );
    
   } else {
    

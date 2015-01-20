@@ -32,6 +32,8 @@ private:
  void OnResize(wxSizeEvent &evt);
  void OnKeyDown(wxKeyEvent &evt);
  void OnKeyUp(wxKeyEvent &evt);
+ void OnShow(wxShowEvent &evt);
+ void OnMaximize(wxMaximizeEvent &evt);
  void OnMouse(wxMouseEvent &evt);
  
 public:
