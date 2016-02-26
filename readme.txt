@@ -1,2 +1,2 @@
-Sorry, abandoned due to poor Git GUI support in Linux.
-Ask me for the code and I'll mail you a zip file.
+Sorry, github updates are abandoned due to poor Git GUI support on Linux. I cannot commit my changes.
+Ask me and I'll mail you the lastest source code a zip file.
